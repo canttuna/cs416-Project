@@ -1,7 +1,7 @@
 function scene_one() {
   document.getElementById("introID").style.display = "none";
   document.getElementById("home").style.visibility = 'visible';
-  document.getElementById("bh").innerHTML = "Home";
+  document.getElementById("home").innerHTML = "Home";
   load_chart();
 }
 
