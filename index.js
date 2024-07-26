@@ -6,7 +6,10 @@ function scene_one() {
 }
 
 function scene_home() {
-  
+  document.getElementById("introID").style.display = "block";
+  document.getElementById("home").style.visibility = 'hidden';
+  document.getElementById("home").innerHTML = "";
+  document.getElementById("chartID").innerHTML = "";
 }
 
 function load_chart() {
