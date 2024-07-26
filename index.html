@@ -9,6 +9,8 @@
   
   <!-- Load d3.js libraries -->
   <script src='https://d3js.org/d3.v4.min.js'></script>
+  <!-- Load custom scripts -->
+  <script type="text/javascript" src='js/index.js' charset='utf-8'></script>
   
   <style>
     div {
@@ -29,6 +31,12 @@
       border-radius: 5px;
     }
     
+    #buttonID {
+      margin: auto;
+      position: relative;
+      text-align: center;
+    }
+    
     .button {
       margin: auto;
       position: relative;
@@ -42,11 +50,13 @@
       width: 160px;
       cursor: pointer;
     }
+    
     .button:hover {
       background-color: black;
       color: white;
     }
-    #footer p {
+    
+    #footerID p {
       font-size: 80%;
       text-align: center;
       width: 100%;
@@ -60,19 +70,25 @@
 </head>
 
 <body>
-  <div id='header'>
+  <div id='headerID'>
     <h1 style="text-align:center">TEST PLEAESE</h1>
   </div>
-
-  <br>
   
-  <div id='button'>
+  <div id='introID'>
+    <p style="text-align:center"> If you're wondering what mpg is, it simply stands for miles per gallon, or the number of miles your vehicle can travel down the streets of Deltona on one gallon of gas. </p>
+  </div>
+  
+  <br>
+  <div id='chartID'></div>
+  
+  <div id='buttonID'>
     <button class="button"> Hello </button>
     <button class="button"> World </button>
   </div>
+  
 
   <br>
-  <div id="footer">
+  <div id="footerID">
     <p>&copy; 2024 Jay Kwon. All right reserved.</p>
   </div>
 
