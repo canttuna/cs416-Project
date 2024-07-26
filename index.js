@@ -1,5 +1,7 @@
 function scene_one() {
   document.getElementById("introId").style.display = "none";
+  document.getElementById("home").style.visibility = 'visible';
+  document.getElementById("bh").innerHTML = "Home";
   load_chart();
 }
 
