@@ -2,7 +2,17 @@ function scene_one() {
   document.getElementById("introID").style.display = "none";
   document.getElementById("home").style.visibility = 'visible';
   document.getElementById("home").innerHTML = "Home";
-  load_chart();
+  document.getElementById("back").className = "button disabled";
+  document.getElementById("back").onclick = function() { scene_two() };
+  load_chart('blue');
+}
+
+function scene_two() {
+  document.getElementById("introID").style.display = "none";
+  document.getElementById("home").style.visibility = 'visible';
+  document.getElementById("home").innerHTML = "Home";
+  document.getElementById("back").className = "button"
+  load_chart('red');
 }
 
 function scene_home() {
@@ -12,7 +22,7 @@ function scene_home() {
   document.getElementById("chartID").innerHTML = "";
 }
 
-function load_chart() {
+function load_chart(color) {
   // Get current browser window dimensions
   var w = window,
       d = document,
@@ -36,7 +46,7 @@ function load_chart() {
     .append("svg")
     .attr("width", canvas.width)
     .attr("height", canvas.height)
-    .style("background-color", 'blue')
+    .style("background-color", color)
     .append("g")
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
