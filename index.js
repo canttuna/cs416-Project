@@ -59,6 +59,11 @@ function scene_home() {
   document.getElementById("back").onclick = null;
 }
 
+function start_vis() {
+  document.getElementById("introID").style.display = "none";
+  document.getElementById("chartID").innerHTML = "";
+}
+
 function load_chart(color) {
   // Get current browser window dimensions
   var w = window,
@@ -87,9 +92,4 @@ function load_chart(color) {
     .append("g")
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
-}
-
-function start_vis() {
-  document.getElementById("introID").style.display = "none";
-  document.getElementById("chartID").innerHTML = "";
 }
