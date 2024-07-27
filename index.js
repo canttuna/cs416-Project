@@ -6,9 +6,12 @@ function scene_one() {
 
   document.getElementById("back").style.visibility = 'visible';
   document.getElementById("back").className = "button disabled";
+  document.getElementById("back").innerHTML = "Back";
   document.getElementById("back").onclick = null;
   
+  document.getElementById("next").style.visibility = 'visible';
   document.getElementById("next").className = "button";
+  document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_two() };
   
   load_chart('blue');
@@ -22,10 +25,12 @@ function scene_two() {
   
   document.getElementById("back").style.visibility = 'visible';
   document.getElementById("back").className = "button"
+  document.getElementById("back").innerHTML = "Back";
   document.getElementById("back").onclick = function() { scene_one() };
   
   document.getElementById("next").style.visibility = 'visible';
   document.getElementById("next").className = "button disabled";
+  document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = null;
   
   load_chart('red');
