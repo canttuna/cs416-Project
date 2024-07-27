@@ -3,7 +3,8 @@ function scene_one() {
   
   document.getElementById("home").style.visibility = 'visible';
   document.getElementById("home").innerHTML = "Home";
-
+  document.getElementById("home").onclick = function() { scene_home() };
+  
   document.getElementById("back").style.visibility = 'visible';
   document.getElementById("back").className = "button disabled";
   document.getElementById("back").innerHTML = "Back";
@@ -22,6 +23,7 @@ function scene_two() {
   
   document.getElementById("home").style.visibility = 'visible';
   document.getElementById("home").innerHTML = "Home";
+  document.getElementById("home").onclick = function() { scene_home() };
   
   document.getElementById("back").style.visibility = 'visible';
   document.getElementById("back").className = "button"
@@ -44,14 +46,17 @@ function scene_home() {
   document.getElementById("home").className = "button";
   document.getElementById("home").style.visibility = 'visible';
   document.getElementById("home").innerHTML = "Start";
+  document.getElementById("home").onclick = function() { scene_one() };
 
   document.getElementById("back").className = "button";
   document.getElementById("back").style.visibility = 'hidden';
   document.getElementById("back").innerHTML = "";
+  document.getElementById("back").onclick = null;
 
   document.getElementById("next").className = "button";
   document.getElementById("next").style.visibility = 'hidden';
   document.getElementById("next").innerHTML = "";
+  document.getElementById("back").onclick = null;
 }
 
 function load_chart(color) {
