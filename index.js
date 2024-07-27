@@ -31,7 +31,7 @@ function scene_two() {
   document.getElementById("back").onclick = function() { scene_one() };
   
   document.getElementById("next").style.visibility = 'visible';
-  document.getElementById("next").className = "button disabled";
+  document.getElementById("next").className = "button";
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_three() };
   
@@ -51,7 +51,7 @@ function scene_three() {
   document.getElementById("back").onclick = function() { scene_two() };
   
   document.getElementById("next").style.visibility = 'visible';
-  document.getElementById("next").className = "button disabled";
+  document.getElementById("next").className = "button";
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_final() };
   
