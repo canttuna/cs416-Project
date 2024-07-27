@@ -1,28 +1,52 @@
 function scene_one() {
-  document.getElementById("introID").style.display = "none";
+  start_vis();
+  
   document.getElementById("home").style.visibility = 'visible';
   document.getElementById("home").innerHTML = "Home";
+
+  document.getElementById("back").style.visibility = 'visible';
   document.getElementById("back").className = "button disabled";
+  document.getElementById("back").onclick = null;
+  
   document.getElementById("next").className = "button";
   document.getElementById("next").onclick = function() { scene_two() };
+  
   load_chart('blue');
 }
 
 function scene_two() {
-  document.getElementById("introID").style.display = "none";
+  start_vis();
+  
   document.getElementById("home").style.visibility = 'visible';
   document.getElementById("home").innerHTML = "Home";
+  
+  document.getElementById("back").style.visibility = 'visible';
   document.getElementById("back").className = "button"
+  document.getElementById("back").onclick = function() { scene_one() };
+  
+  document.getElementById("next").style.visibility = 'visible';
   document.getElementById("next").className = "button disabled";
-  document.getElementById("next").onclick = function() { scene_one() };
+  document.getElementById("next").onclick = null;
+  
   load_chart('red');
 }
 
 function scene_home() {
   document.getElementById("introID").style.display = "block";
-  document.getElementById("home").style.visibility = 'hidden';
-  document.getElementById("home").innerHTML = "";
+
   document.getElementById("chartID").innerHTML = "";
+  
+  document.getElementById("home").className = "button";
+  document.getElementById("home").style.visibility = 'visible';
+  document.getElementById("home").innerHTML = "Start";
+
+  document.getElementById("back").className = "button";
+  document.getElementById("back").style.visibility = 'hidden';
+  document.getElementById("back").innerHTML = "";
+
+  document.getElementById("next").className = "button";
+  document.getElementById("next").style.visibility = 'hidden';
+  document.getElementById("next").innerHTML = "";
 }
 
 function load_chart(color) {
@@ -56,5 +80,6 @@ function load_chart(color) {
 }
 
 function start_vis() {
-  
+  document.getElementById("introID").style.display = "none";
+  document.getElementById("chartID").innerHTML = "";
 }
