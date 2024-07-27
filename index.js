@@ -15,7 +15,7 @@ function scene_one() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_two() };
   
-  load_chart(#b3f8fc);
+  load_chart('#b3f8fc');
 }
 
 function scene_two() {
@@ -35,7 +35,7 @@ function scene_two() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = null;
   
-  load_chart(#fcb3b3);
+  load_chart('#fcb3b3');
 }
 
 function scene_home() {
