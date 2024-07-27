@@ -33,7 +33,7 @@ function scene_two() {
   document.getElementById("next").style.visibility = 'visible';
   document.getElementById("next").className = "button disabled";
   document.getElementById("next").innerHTML = "Next";
-  document.getElementById("next").onclick = nfunction() { scene_three() };
+  document.getElementById("next").onclick = function() { scene_three() };
   
   load_chart('#fcb3b3');
 }
