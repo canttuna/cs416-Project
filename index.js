@@ -3,7 +3,8 @@ function scene_one() {
   document.getElementById("home").style.visibility = 'visible';
   document.getElementById("home").innerHTML = "Home";
   document.getElementById("back").className = "button disabled";
-  document.getElementById("back").onclick = function() { scene_two() };
+  document.getElementById("next").className = "button";
+  document.getElementById("next").onclick = function() { scene_two() };
   load_chart('blue');
 }
 
@@ -12,6 +13,8 @@ function scene_two() {
   document.getElementById("home").style.visibility = 'visible';
   document.getElementById("home").innerHTML = "Home";
   document.getElementById("back").className = "button"
+  document.getElementById("next").className = "button disabled";
+  document.getElementById("next").onclick = function() { scene_one() };
   load_chart('red');
 }
 
