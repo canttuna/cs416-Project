@@ -33,9 +33,49 @@ function scene_two() {
   document.getElementById("next").style.visibility = 'visible';
   document.getElementById("next").className = "button disabled";
   document.getElementById("next").innerHTML = "Next";
-  document.getElementById("next").onclick = null;
+  document.getElementById("next").onclick = nfunction() { scene_three() };
   
   load_chart('#fcb3b3');
+}
+
+function scene_three() {
+  start_vis();
+  
+  document.getElementById("home").style.visibility = 'visible';
+  document.getElementById("home").innerHTML = "Home";
+  document.getElementById("home").onclick = function() { scene_home() };
+  
+  document.getElementById("back").style.visibility = 'visible';
+  document.getElementById("back").className = "button"
+  document.getElementById("back").innerHTML = "Back";
+  document.getElementById("back").onclick = function() { scene_two() };
+  
+  document.getElementById("next").style.visibility = 'visible';
+  document.getElementById("next").className = "button disabled";
+  document.getElementById("next").innerHTML = "Next";
+  document.getElementById("next").onclick = function() { scene_final() };
+  
+  load_chart('#c7fcb8');
+}
+
+function scene_final() {
+  start_vis();
+  
+  document.getElementById("home").style.visibility = 'visible';
+  document.getElementById("home").innerHTML = "Home";
+  document.getElementById("home").onclick = function() { scene_home() };
+  
+  document.getElementById("back").style.visibility = 'visible';
+  document.getElementById("back").className = "button"
+  document.getElementById("back").innerHTML = "Back";
+  document.getElementById("back").onclick = function() { scene_three() };
+  
+  document.getElementById("next").style.visibility = 'visible';
+  document.getElementById("next").className = "button disabled";
+  document.getElementById("next").innerHTML = "Next";
+  document.getElementById("next").onclick = null;
+  
+  load_chart('#fcffa8');
 }
 
 function scene_home() {
