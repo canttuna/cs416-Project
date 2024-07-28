@@ -15,7 +15,7 @@ function scene_one() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_two() };
 
-  document.getElementById("chartID").innerHTML = "Test Sentence 1";
+  document.getElementById("explainID").innerHTML = "Test Sentence 1";
 	
   load_chart_one('#b3f8fc');
 }
@@ -37,7 +37,7 @@ function scene_two() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_three() };
 
-  document.getElementById("chartID").innerHTML = "Test Sentence 2";
+  document.getElementById("explainID").innerHTML = "Test Sentence 2";
 	
   load_chart_two('#fcb3b3');
 }
