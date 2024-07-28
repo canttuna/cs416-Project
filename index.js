@@ -80,7 +80,8 @@ function scene_final() {
 
 function scene_home() {
   document.getElementById("introID").style.display = "block";
-
+  document.getElementById("photoID").style.display = "block";
+  
   document.getElementById("chartID").innerHTML = "";
   
   document.getElementById("home").className = "button";
@@ -101,6 +102,7 @@ function scene_home() {
 
 function start_vis() {
   document.getElementById("introID").style.display = "none";
+  document.getElementById("photoID").style.display = "none";
   document.getElementById("chartID").innerHTML = "";
 }
 
