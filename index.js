@@ -153,17 +153,16 @@ function load_chart_one(color) {
     .domain([0, 110])
     .range([height - margin.bottom, margin.top])
 
-svg.append('g')
-  .attr('transform', 'translate(0, ' + margin.top + ')')
-  .attr('fill', 'royalblue')
-  .selectAll('rect')
-  .data(data)
-  .enter()
-  .append('rect')
-  .attr('x', (d, i) => x(i))
-  .attr('y', (d) => y(d.avghway))
-  .attr('height', (d) => chart.height - y(d.avghway))
-  .attr('width', x.bandwidth())
+  svg.append('g')
+    .attr('fill', 'royalblue')
+    .selectAll('rect')
+    .data(data)
+    .enter()
+    .append('rect')
+    .attr('x', (d, i) => x(i))
+    .attr('y', (d) => y(d.avghway))
+    .attr('height', (d) => chart.height - y(d.avghway) + margin.top)
+    .attr('width', x.bandwidth())
 
   function xAxis(g) {
     g.attr('transform', 'translate(0,' + (height - margin.bottom) + ')')
@@ -179,7 +178,21 @@ svg.append('g')
 
   svg.append('g').call(yAxis);
   svg.append('g').call(xAxis);
-  
+ 
+  svg.append('g').attr('transform', 'translate(' + (chart.width / 2 + margin.left) + ', ' + (chart.height + margin.bottom * 1.35) + ')')
+    .append('text')
+    .attr("class", "x label")
+    .attr('font-size', '18px')
+    .attr('text-anchor', 'middle')
+    .text("Number of Engine Cylinders");
+    
+  svg.append('g').attr('transform', 'translate(' + margin.left * 0.45 + ', ' + (chart.height / 2 + margin.top) + ')')
+    .append('text')
+    .attr("class", "y label")
+    .attr('font-size', '18px')
+    .attr('text-anchor', 'middle')
+    .attr("transform", "rotate(-90)")
+    .text("Average Highway MPG")
 }
 
 function load_chart_two(color) {
