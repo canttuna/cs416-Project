@@ -111,9 +111,10 @@ function scene_home() {
 function start_vis() {
   document.getElementById("introID").style.display = "none";
   document.getElementById("photoID").style.display = "none";
+  document.getElementById("citationID").style.display = "none";
+	
   document.getElementById("chartID").innerHTML = "";
   document.getElementById("explainID").innerHTML = "";
-  document.getElementById("citationID").innerHTML = "";
 }
 
 function load_chart_one(color) {
