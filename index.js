@@ -152,6 +152,31 @@ function load_chart_one(color) {
   const y = d3.scaleLinear()
     .domain([0, 110])
     .range([height - margin.bottom, margin.top])
+  var tooltip = d3.select("#chartID")
+    .append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+  var mouseOver = function(d) {
+    tooltip.transition()
+      .duration(200)
+      .style("opacity", 0.8);
+
+    tooltip.html('Avg Highway MPG: ' + d.avghway + '<br>' + ' Engine Cylinder Count: ' + d.ec)
+      .style("left", (d3.event.pageX) + "px")
+      .style("top", (d3.event.pageY - 30) + "px");
+  };
+
+  var mouseOn = function(d) {
+    tooltip.style("left", (d3.event.pageX) + "px")
+      .style("top", (d3.event.pageY - 30) + "px");
+  };
+
+  var mouseLeave = function(d) {
+    tooltip.transition()
+      .duration(500)
+      .style("opacity", 0);
+  };
 
   svg.append('g')
     .attr('fill', 'royalblue')
@@ -163,6 +188,10 @@ function load_chart_one(color) {
     .attr('y', (d) => y(d.avghway))
     .attr('height', (d) => chart.height - y(d.avghway) + margin.top)
     .attr('width', x.bandwidth())
+    .attr('class', 'bar')
+	  .on("mouseover", mouseOver)
+    .on("mousemove", mouseOn)
+    .on("mouseleave", mouseLeave);
 
   function xAxis(g) {
     g.attr('transform', 'translate(0,' + (height - margin.bottom) + ')')
