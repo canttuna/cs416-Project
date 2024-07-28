@@ -15,7 +15,7 @@ function scene_one() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_two() };
   
-  load_chart('#b3f8fc');
+  load_chart_one('#b3f8fc');
 }
 
 function scene_two() {
@@ -35,7 +35,7 @@ function scene_two() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_three() };
   
-  load_chart('#fcb3b3');
+  load_chart_two('#fcb3b3');
 }
 
 function scene_three() {
@@ -55,7 +55,7 @@ function scene_three() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_final() };
   
-  load_chart('#c7fcb8');
+  load_chart_two('#c7fcb8');
 }
 
 function scene_final() {
@@ -75,7 +75,7 @@ function scene_final() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = null;
   
-  load_chart('#fcffa8');
+  load_chart_two('#fcffa8');
 }
 
 function scene_home() {
@@ -104,7 +104,7 @@ function start_vis() {
   document.getElementById("chartID").innerHTML = "";
 }
 
-function load_chart(color) {
+function load_chart_one(color) {
   // Get current browser window dimensions
   var w = window,
       d = document,
@@ -180,5 +180,33 @@ svg.append('g')
   
 }
 
+function load_chart_two(color) {
+  // Get current browser window dimensions
+  var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName('body')[0],
+      x_size = w.innerWidth || e.clientWidth || g.clientWidth,
+      y_size = w.innerHeight || e.clientHeight || g.clientHeight;
+  
+  // Set canvas and chart dimensions
+  const width = 0.85 * x_size;
+  const height = (0.5 * x_size < 0.62 * y_size) ? 0.5 * x_size : 0.62 * y_size;
+  const canvas = { width: width, height: height };
+  const margin = { left: 82, right: 52, top: 36, bottom: 56 };
+  const chart = {
+    width: canvas.width - (margin.right + margin.left),
+    height: canvas.height - (margin.top + margin.bottom)
+  };
+  
+  // Append an svg object to the chartID div
+  var svg = d3.select("#chartID")
+    .append("svg")
+    .attr("width", canvas.width)
+    .attr("height", canvas.height)
+    .style("background-color", color)
+    .append("g")
+  
+}
 
 
