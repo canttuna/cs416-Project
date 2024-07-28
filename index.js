@@ -55,7 +55,7 @@ function scene_three() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_final() };
   
-  load_chart_two('#c7fcb8');
+  load_chart_three('#c7fcb8');
 }
 
 function scene_final() {
@@ -75,7 +75,7 @@ function scene_final() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = null;
   
-  load_chart_two('#fcffa8');
+  load_chart_three('#fcffa8');
 }
 
 function scene_home() {
@@ -152,6 +152,7 @@ function load_chart_one(color) {
   const y = d3.scaleLinear()
     .domain([0, 110])
     .range([height - margin.bottom, margin.top])
+	
   var tooltip = d3.select("#chartID")
     .append("div")
     .attr("class", "tooltip")
@@ -189,7 +190,7 @@ function load_chart_one(color) {
     .attr('height', (d) => chart.height - y(d.avghway) + margin.top)
     .attr('width', x.bandwidth())
     .attr('class', 'bar')
-	  .on("mouseover", mouseOver)
+    .on("mouseover", mouseOver)
     .on("mousemove", mouseOn)
     .on("mouseleave", mouseLeave);
 
@@ -225,6 +226,125 @@ function load_chart_one(color) {
 }
 
 function load_chart_two(color) {
+  // Get current browser window dimensions
+  var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName('body')[0],
+      x_size = w.innerWidth || e.clientWidth || g.clientWidth,
+      y_size = w.innerHeight || e.clientHeight || g.clientHeight;
+  
+  // Set canvas and chart dimensions
+  const width = 0.85 * x_size;
+  const height = (0.5 * x_size < 0.62 * y_size) ? 0.5 * x_size : 0.62 * y_size;
+  const canvas = { width: width, height: height };
+  const margin = { left: 82, right: 52, top: 36, bottom: 56 };
+  const chart = {
+    width: canvas.width - (margin.right + margin.left),
+    height: canvas.height - (margin.top + margin.bottom)
+  };
+  
+  // Append an svg object to the chartID div
+  var svg = d3.select("#chartID")
+    .append("svg")
+    .attr("width", canvas.width)
+    .attr("height", canvas.height)
+    .style("background-color", color)
+    .append("g")
+  
+  const data = [
+    { ec: '0', avgcity: 119.2 },
+    { ec: '2', avgcity: 36 },
+    { ec: '3', avgcity: 31 },
+    { ec: '4', avgcity: 24 },
+    { ec: '6', avgcity: 18.3 },
+    { ec: '8', avgcity: 14.7 },
+    { ec: '10', avgcity: 13.3 },
+    { ec: '12', avgcity: 12 }
+  ];
+
+  const x = d3.scaleBand()
+    .domain(d3.range(data.length))
+    .range([margin.left, width - margin.right])
+    .padding(0.1)
+
+  const y = d3.scaleLinear()
+    .domain([0, 130])
+    .range([height - margin.bottom, margin.top])
+	
+  var tooltip = d3.select("#chartID")
+    .append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+  var mouseOver = function(d) {
+    tooltip.transition()
+      .duration(200)
+      .style("opacity", 0.8);
+
+    tooltip.html('Avg City MPG: ' + d.avgcity + '<br>' + ' Engine Cylinder Count: ' + d.ec)
+      .style("left", (d3.event.pageX) + "px")
+      .style("top", (d3.event.pageY - 30) + "px");
+  };
+
+  var mouseOn = function(d) {
+    tooltip.style("left", (d3.event.pageX) + "px")
+      .style("top", (d3.event.pageY - 30) + "px");
+  };
+
+  var mouseLeave = function(d) {
+    tooltip.transition()
+      .duration(500)
+      .style("opacity", 0);
+  };
+
+  svg.append('g')
+    .attr('fill', 'DarkRed')
+    .selectAll('rect')
+    .data(data)
+    .enter()
+    .append('rect')
+    .attr('x', (d, i) => x(i))
+    .attr('y', (d) => y(d.avgcity))
+    .attr('height', (d) => chart.height - y(d.avgcity) + margin.top)
+    .attr('width', x.bandwidth())
+    .attr('class', 'bar')
+    .on("mouseover", mouseOver)
+    .on("mousemove", mouseOn)
+    .on("mouseleave", mouseLeave);
+
+  function xAxis(g) {
+    g.attr('transform', 'translate(0,' + (height - margin.bottom) + ')')
+      .call(d3.axisBottom(x).tickFormat(i => data[i].ec))
+      .attr('font-size', '18px')
+  }
+
+  function yAxis(g) {
+    g.attr('transform', 'translate(' + margin.left + ', 0)')
+      .call(d3.axisLeft(y).ticks(null, data.format))
+      .attr('font-size', '18px')
+  }
+
+  svg.append('g').call(yAxis);
+  svg.append('g').call(xAxis);
+ 
+  svg.append('g').attr('transform', 'translate(' + (chart.width / 2 + margin.left) + ', ' + (chart.height + margin.bottom * 1.35) + ')')
+    .append('text')
+    .attr("class", "x label")
+    .attr('font-size', '18px')
+    .attr('text-anchor', 'middle')
+    .text("Number of Engine Cylinders");
+    
+  svg.append('g').attr('transform', 'translate(' + margin.left * 0.45 + ', ' + (chart.height / 2 + margin.top) + ')')
+    .append('text')
+    .attr("class", "y label")
+    .attr('font-size', '18px')
+    .attr('text-anchor', 'middle')
+    .attr("transform", "rotate(-90)")
+    .text("Average City MPG")
+}
+
+function load_chart_three(color) { 
   // Get current browser window dimensions
   var w = window,
       d = document,
