@@ -507,7 +507,7 @@ function load_chart_three(color) {
 
   colorLegend.append("text")
     .attr("x", chart.width - xSubgroup.bandwidth() - 10) 
-    .attr("dy", xSubgroup.bandwidth())
+    .attr("dy", xSubgroup.bandwidth() * 0.8)
     .style("text-anchor", "end")
     .text(function(d) { return d; })
 }
