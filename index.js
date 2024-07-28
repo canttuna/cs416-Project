@@ -14,7 +14,9 @@ function scene_one() {
   document.getElementById("next").className = "button";
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_two() };
-  
+
+  document.getElementById("chartID").innerHTML = "Test Sentence 1";
+	
   load_chart_one('#b3f8fc');
 }
 
@@ -34,7 +36,9 @@ function scene_two() {
   document.getElementById("next").className = "button";
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_three() };
-  
+
+  document.getElementById("chartID").innerHTML = "Test Sentence 2";
+	
   load_chart_two('#fcb3b3');
 }
 
@@ -104,6 +108,7 @@ function start_vis() {
   document.getElementById("introID").style.display = "none";
   document.getElementById("photoID").style.display = "none";
   document.getElementById("chartID").innerHTML = "";
+  document.getElementById("explainID").innerHTML = "";
 }
 
 function load_chart_one(color) {
