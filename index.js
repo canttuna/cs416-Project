@@ -101,12 +101,10 @@ function scene_home() {
 
 function start_vis() {
   document.getElementById("introID").style.display = "none";
-  document.getElementById("chartID").style.display = "none";
   document.getElementById("chartID").innerHTML = "";
 }
 
 function load_chart(color) {
-  document.getElementById("chartID").style.display = "block";
   // Get current browser window dimensions
   var w = window,
       d = document,
@@ -119,7 +117,7 @@ function load_chart(color) {
   const width = 0.85 * x_size;
   const height = (0.5 * x_size < 0.62 * y_size) ? 0.5 * x_size : 0.62 * y_size;
   const canvas = { width: width, height: height };
-  const margin = { left: 65, right: 52, top: 12, bottom: 36 };
+  const margin = { left: 82, right: 52, top: 36, bottom: 56 };
   const chart = {
     width: canvas.width - (margin.right + margin.left),
     height: canvas.height - (margin.top + margin.bottom)
@@ -132,8 +130,6 @@ function load_chart(color) {
     .attr("height", canvas.height)
     .style("background-color", color)
     .append("g")
-    .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
   
   const data = [
     { ec: '0', avghway: 101.5 },
@@ -149,13 +145,14 @@ function load_chart(color) {
   const x = d3.scaleBand()
     .domain(d3.range(data.length))
     .range([margin.left, width - margin.right])
-    .padding(0.1);
+    .padding(0.1)
 
   const y = d3.scaleLinear()
     .domain([0, 110])
     .range([height - margin.bottom, margin.top])
 
 svg.append('g')
+  .attr('transform', 'translate(0, ' + margin.top + ')')
   .attr('fill', 'royalblue')
   .selectAll('rect')
   .data(data)
@@ -163,17 +160,18 @@ svg.append('g')
   .append('rect')
   .attr('x', (d, i) => x(i))
   .attr('y', (d) => y(d.avghway))
-  .attr('height', (d) => y(0) - y(d.avghway))
+  .attr('height', (d) => chart.height - y(d.avghway))
   .attr('width', x.bandwidth())
 
   function xAxis(g) {
-    g.attr('transform', 'translate(0,' + chart.height + ')')
+    g.attr('transform', 'translate(0,' + (height - margin.bottom) + ')')
       .call(d3.axisBottom(x).tickFormat(i => data[i].ec))
       .attr('font-size', '18px')
   }
 
   function yAxis(g) {
-    g.call(d3.axisLeft(y).ticks(null, data.format))
+    g.attr('transform', 'translate(' + margin.left + ', 0)')
+      .call(d3.axisLeft(y).ticks(null, data.format))
       .attr('font-size', '18px')
   }
 
