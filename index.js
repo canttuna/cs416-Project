@@ -89,6 +89,7 @@ function scene_home() {
   document.getElementById("photoID").style.display = "block";
   
   document.getElementById("chartID").innerHTML = "";
+  document.getElementById("explainID").innerHTML = "";
   
   document.getElementById("home").className = "button";
   document.getElementById("home").style.visibility = 'visible';
