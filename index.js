@@ -19,14 +19,12 @@ function scene_one() {
 	  "Note that the 0 engine cylinders represent electric vehicles. " +
 	  "There is a different way of calculating MPG for electric vehicles since they don’t run on gas. " +
 	  "According to " + 
-	  <a href="https://www.merchantsfleet.com/future-of-fleet/mpge-explained/">merchantsfleet</a> + 
+	  '<a href="https://www.merchantsfleet.com/future-of-fleet/mpge-explained/">merchantsfleet</a>' + 
 	  ", the energy contained in 1 gallon of gas is equivalent to 33.7 kWh (kilowatt hours) of electricity. " +
-	  "So if an electric car travels 101.5 miles with 33.7 kWh, this would mean that the MPG for this vehicle is 101.5 MPG. <br>" + 
+	  "So if an electric car travels 101.5 miles with 33.7 kWh, this would mean that the MPG for this vehicle is 101.5 MPG. <br><br>" + 
 	  "In this graph, it can be seen that electric cars have the best average highway MPG. " + 
 	  "From vehicles that have an internal combustion engine, cars that have 3 engine cylinders show a high average highway MPG value compared to others. " +
 	  "We can also see that there is no direct correlation between number of engine cylinders and average highway MPG."; 
-	
-  document.getElementById("explainID").style.fontSize = "20px";
 	
   load_chart_one('#b3f8fc');
 }
@@ -48,8 +46,16 @@ function scene_two() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_three() };
 
-  document.getElementById("explainID").innerHTML = "Test Sentence 2";
-  document.getElementById("explainID").style.fontSize = "20px";
+  document.getElementById("explainID").innerHTML = "Here the data for average city MPG of different numbers of engine cylinders are provided. " +
+	  "The reason why the values for average city MPG and average highway MPG are considered separately is because cars typically travel with different speeds in these locations. " +
+	  "In the city, cars will travel relatively slow (25 ~ 30 mph) in the cities due to traffic, speed limits, and safety. " +
+	  "On the other hand, cars will travel up to 70 mph on the highway according to " +
+	  '<a href="https://www.isp.illinois.gov/TrafficSafety/SpeedLimitEnforcement#:~:text=The%20maximum%20speed%20limit%20is,other%20speed%20restriction%20is%20established">Illinois State Police</a>' +
+	  ". <br><br>" +
+	  "Similar to the previous graph, it can be seen that electric cars have the best average city MPG. " + 
+	  "From vehicles that have an internal combustion engine, cars that have 2 engine cylinders show a high average city MPG value compared to others. " + 
+	  "Here we can see that there is a direct correlation between the number of engine cylinders and average city MPG. " + 
+          "Since more engine cylinders consume more fuel, it would lower the MPG. ";
 	
   load_chart_two('#fcb3b3');
 }
