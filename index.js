@@ -106,6 +106,7 @@ function start_vis() {
 }
 
 function load_chart(color) {
+  document.getElementById("chartID").style.display = "block";
   // Get current browser window dimensions
   var w = window,
       d = document,
