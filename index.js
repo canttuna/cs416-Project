@@ -61,7 +61,7 @@ function scene_three() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_final() };
   
-  load_chart_three('#c7fcb8');
+  load_chart_three('LightGray');
 }
 
 function scene_final() {
@@ -81,7 +81,7 @@ function scene_final() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = null;
   
-  load_chart_three('#fcffa8');
+  load_chart_final('#fcffa8');
 }
 
 function scene_home() {
@@ -381,6 +381,162 @@ function load_chart_three(color) {
     .style("background-color", color)
     .append("g")
   
+  var data = [
+    { group: '0', Germany: 2, Italy: 1, Japan: 2, Korea: 2, UK: 0, US: 3 },
+    { group: '2', Germany: 1, Italy: 0, Japan: 0, Korea: 0, UK: 0, US: 0},
+    { group: '3', Germany: 2, Italy: 0, Japan: 1, Korea: 0, UK: 0, US: 1},
+    { group: '4', Germany: 10, Italy: 3, Japan: 16, Korea: 2, UK: 4, US: 17},
+    { group: '6', Germany: 6, Italy: 2, Japan: 10, Korea: 4, UK: 4, US: 13},
+    { group: '8', Germany: 4, Italy: 2, Japan: 4, Korea: 2, UK: 4, US: 14},
+    { group: '10', Germany: 1, Italy: 1, Japan: 0, Korea: 0, UK: 0, US: 1},
+    { group: '12', Germany: 2, Italy: 2, Japan: 0, Korea: 0, UK: 3, US: 0}
+  ];
+    
+
+  var subgroups = Object.keys(data[0]).slice(1);
+  var groups = d3.map(data, function(d) { return(d.group) }).keys()
+  
+  const x = d3.scaleBand()
+    .domain(groups)
+    .range([margin.left, width - margin.right])
+    .padding([0.4])
+
+  const y = d3.scaleLinear()
+    .domain([0, 20])
+    .range([height - margin.bottom, margin.top])
+    
+  var xSubgroup = d3.scaleBand()
+    .domain(subgroups)
+    .range([0, x.bandwidth()])
+    .padding([0.05])
+    
+  var color = d3.scaleOrdinal()
+    .domain(subgroups)
+    .range(['#e41a1c','#377eb8','#4daf4a', 'DarkOrange', 'Purple', 'Yellow'])
+    
+  var tooltip = d3.select("#chartID")
+    .append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+  var mouseOver = function(d) {
+    tooltip.transition()
+      .duration(200)
+      .style("opacity", 0.8);
+
+    tooltip.html('Manufacturing Country: ' + d.key + '<br>' + 'Car Count: ' + d.value)
+      .style("left", (d3.event.pageX) + "px")
+      .style("top", (d3.event.pageY - 30) + "px");
+  };
+
+  var mouseOn = function(d) {
+    tooltip.style("left", (d3.event.pageX) + "px")
+      .style("top", (d3.event.pageY - 30) + "px");
+  };
+
+  var mouseLeave = function(d) {
+    tooltip.transition()
+      .duration(500)
+      .style("opacity", 0);
+  };
+
+    
+   svg.append("g")
+    .selectAll("g")
+    .data(data)
+    .enter()
+    .append("g")
+      .attr("transform", function(d) { return "translate(" + x(d.group) + ", 0)"; })
+    .selectAll("rect")
+    
+    .data(function(d) { return subgroups.map(function(key) { return {key: key, value: d[key]}; }); })
+    .enter()
+    .append("rect").attr('class', 'bar').on("mouseover", mouseOver).on("mousemove", mouseOn).on("mouseleave", mouseLeave)
+      .attr("x", function(d) { return xSubgroup(d.key); })
+      .attr("y", function(d) { return y(d.value); })
+      .attr("width", xSubgroup.bandwidth())
+      .attr("height", (d) => chart.height - y(d.value) + margin.top)
+      .attr("fill", function(d) { return color(d.key); });
+      
+
+  function xAxis(g) {
+    g.attr('transform', 'translate(0,' + (height - margin.bottom) + ')')
+      .call(d3.axisBottom(x))
+      .attr('font-size', '18px')
+  }
+
+  function yAxis(g) {
+    g.attr('transform', 'translate(' + margin.left + ', 0)')
+      .call(d3.axisLeft(y))
+      .attr('font-size', '18px')
+  }
+
+  svg.append('g').call(yAxis);
+  svg.append('g').call(xAxis);
+ 
+  svg.append('g').attr('transform', 'translate(' + (chart.width / 2 + margin.left) + ', ' + (chart.height + margin.bottom * 1.35) + ')')
+    .append('text')
+    .attr("class", "x label")
+    .attr('font-size', '18px')
+    .attr('text-anchor', 'middle')
+    .text("Number of Engine Cylinders");
+    
+  svg.append('g').attr('transform', 'translate(' + margin.left * 0.45 + ', ' + (chart.height / 2 + margin.top) + ')')
+    .append('text')
+    .attr("class", "y label")
+    .attr('font-size', '18px')
+    .attr('text-anchor', 'middle')
+    .attr("transform", "rotate(-90)")
+    .text("Car Count")
+   
+  var colorLegend = svg.selectAll("colorlegend")
+    .data(subgroups)
+    .enter().append("g")
+    .attr("class", "colorlegend")
+    .attr("transform", function(d, i) {
+        return "translate(100, " + (i * 30 + margin.top) + ")";
+    });
+
+  colorLegend.append("rect")
+    .attr("x", chart.width - xSubgroup.bandwidth())
+    .attr("width", xSubgroup.bandwidth())
+    .attr("height", xSubgroup.bandwidth())
+    .style("fill", function(d) { return color(d); })
+    .style("stroke-width", 0)
+
+  colorLegend.append("text")
+    .attr("x", chart.width - xSubgroup.bandwidth() - 10) 
+    .attr("dy", xSubgroup.bandwidth())
+    .style("text-anchor", "end")
+    .text(function(d) { return d; })
 }
 
+function load_chart_final(color) { 
+  // Get current browser window dimensions
+  var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName('body')[0],
+      x_size = w.innerWidth || e.clientWidth || g.clientWidth,
+      y_size = w.innerHeight || e.clientHeight || g.clientHeight;
+  
+  // Set canvas and chart dimensions
+  const width = 0.85 * x_size;
+  const height = (0.5 * x_size < 0.62 * y_size) ? 0.5 * x_size : 0.62 * y_size;
+  const canvas = { width: width, height: height };
+  const margin = { left: 82, right: 52, top: 36, bottom: 56 };
+  const chart = {
+    width: canvas.width - (margin.right + margin.left),
+    height: canvas.height - (margin.top + margin.bottom)
+  };
+  
+  // Append an svg object to the chartID div
+  var svg = d3.select("#chartID")
+    .append("svg")
+    .attr("width", canvas.width)
+    .attr("height", canvas.height)
+    .style("background-color", color)
+    .append("g")
+  
+}
 
