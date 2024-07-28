@@ -123,7 +123,7 @@ function load_chart(color) {
     height: canvas.height - (margin.top + margin.bottom)
   };
   
-  // Append an svg object to the scatter div
+  // Append an svg object to the chartID div
   var svg = d3.select("#chartID")
     .append("svg")
     .attr("width", canvas.width)
@@ -132,4 +132,54 @@ function load_chart(color) {
     .append("g")
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
+  
+  const data = [
+    { ec: '0', avghway: 101.5 },
+    { ec: '2', avghway: 101.5 },
+    { ec: '3', avghway: 101.5 },
+    { ec: '4', avghway: 101.5 },
+    { ec: '6', avghway: 101.5 },
+    { ec: '8', avghway: 101.5 },
+    { ec: '10', avghway: 101.5 },
+    { ec: '12', avghway: 101.5 }
+  ];
+
+  const x = d3.scaleBand()
+    .domain(d3.range(data.length))
+    .range([margin.left, width - margin.right])
+    .padding(0.1);
+
+  const y = d3.scaleLinear()
+    .domain([0, 100])
+    .range([height - margin.bottom, margin.top])
+
+svg
+  .append('g')
+  .attr('fill', 'royalblue')
+  .selectAll('rect')
+  .data(data)
+  .join('rect')
+    .attr('x', (d, i) => x(i))
+    .attr('y', (d) => y(d.avghway))
+    .attr('height', (d) => y(0) - y(d.avghway))
+    .attr('width', x.bandwidth())
+
+  function xAxis(g) {
+    g.attr('transform', 'translate(0, ${height - margin.bottom})')
+      .call(d3.axisBottom(x).tickFormat(i => data[i].ec))
+      .attr('font-size', '18px')
+  }
+
+  function yAxis(g) {
+    g.attr('transform', 'translate(${margin.left}, 0)')
+      .call(d3.axisLeft(y).ticks(null, data.format))
+      .attr('font-size', '18px')
+  }
+
+  svg.append('g').call(yAxis);
+  svg.append('g').call(xAxis);
+  
 }
+
+
+
