@@ -153,16 +153,16 @@ function load_chart(color) {
     .domain([0, 100])
     .range([height - margin.bottom, margin.top])
 
-svg
-  .append('g')
+svg.append('g')
   .attr('fill', 'royalblue')
   .selectAll('rect')
   .data(data)
-  .join('rect')
-    .attr('x', (d, i) => x(i))
-    .attr('y', (d) => y(d.avghway))
-    .attr('height', (d) => y(0) - y(d.avghway))
-    .attr('width', x.bandwidth())
+  .enter()
+  .append('rect')
+  .attr('x', (d, i) => x(i))
+  .attr('y', (d) => y(d.avghway))
+  .attr('height', (d) => y(0) - y(d.avghway))
+  .attr('width', x.bandwidth())
 
   function xAxis(g) {
     g.attr('transform', 'translate(0, ${height - margin.bottom})')
