@@ -16,6 +16,7 @@ function scene_one() {
   document.getElementById("next").onclick = function() { scene_two() };
 
   document.getElementById("explainID").innerHTML = "Test Sentence 1";
+  document.getElementById("explainID").style.fontSize = "20px";
 	
   load_chart_one('#b3f8fc');
 }
@@ -38,6 +39,7 @@ function scene_two() {
   document.getElementById("next").onclick = function() { scene_three() };
 
   document.getElementById("explainID").innerHTML = "Test Sentence 2";
+  document.getElementById("explainID").style.fontSize = "20px";
 	
   load_chart_two('#fcb3b3');
 }
