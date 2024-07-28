@@ -101,6 +101,7 @@ function scene_home() {
 
 function start_vis() {
   document.getElementById("introID").style.display = "none";
+  document.getElementById("chartID").style.display = "none";
   document.getElementById("chartID").innerHTML = "";
 }
 
@@ -135,13 +136,13 @@ function load_chart(color) {
   
   const data = [
     { ec: '0', avghway: 101.5 },
-    { ec: '2', avghway: 101.5 },
-    { ec: '3', avghway: 101.5 },
-    { ec: '4', avghway: 101.5 },
-    { ec: '6', avghway: 101.5 },
-    { ec: '8', avghway: 101.5 },
-    { ec: '10', avghway: 101.5 },
-    { ec: '12', avghway: 101.5 }
+    { ec: '2', avghway: 33 },
+    { ec: '3', avghway: 37.5 },
+    { ec: '4', avghway: 31.4 },
+    { ec: '6', avghway: 25.6 },
+    { ec: '8', avghway: 21.9 },
+    { ec: '10', avghway: 20.7 },
+    { ec: '12', avghway: 18.7 }
   ];
 
   const x = d3.scaleBand()
@@ -150,7 +151,7 @@ function load_chart(color) {
     .padding(0.1);
 
   const y = d3.scaleLinear()
-    .domain([0, 100])
+    .domain([0, 110])
     .range([height - margin.bottom, margin.top])
 
 svg.append('g')
@@ -165,14 +166,13 @@ svg.append('g')
   .attr('width', x.bandwidth())
 
   function xAxis(g) {
-    g.attr('transform', 'translate(0, ${height - margin.bottom})')
+    g.attr('transform', 'translate(0,' + chart.height + ')')
       .call(d3.axisBottom(x).tickFormat(i => data[i].ec))
       .attr('font-size', '18px')
   }
 
   function yAxis(g) {
-    g.attr('transform', 'translate(${margin.left}, 0)')
-      .call(d3.axisLeft(y).ticks(null, data.format))
+    g.call(d3.axisLeft(y).ticks(null, data.format))
       .attr('font-size', '18px')
   }
 
