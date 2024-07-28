@@ -76,8 +76,24 @@ function scene_three() {
   document.getElementById("next").className = "button";
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_final() };
-  
+
+  document.getElementById("explainID").innerHTML = "Here is the graph for the number of manufactured car models of different numbers of engine cylinders per manufacturing country. " +
+	  "The legend shows the different countries. " +
+	  "A missing bar in the graph means that there are no cars with the specific number of engine cylinders being manufactured by the country. " +
+	  "We can see that most manufacturers focus on making 4, 6, and 8 engine cylinder vehicles. " +
+	  "And currently there is a limitation when choosing electric vehicles, since there are not a lot of manufacturers. " +
+	  "4, 6, and 8 engine cylinder cars from Japan and the US have lots of variety and can be fairly cheap. " +
+	  "On the other hand, 10 and 12 engine cylinder cars are mainly manufactured from Germany, Italy, and the UK. " +
+	  "These are luxury sports cars that can be extremely expensive. <br><br>" +
+	  "So, to choose the best car for yourself, be sure to consider where you will be driving the most. " +
+	  "Is it the city? Or is it the highway? " +
+	  "Also, if you are on a budget make wise decisions by choosing some affordable manufacturers. " +
+	  "However, if you enjoy speed and are financially abundant, you can also consider purchasing high-end sports cars. " +
+	  "Lastly, since there are lots of newly developed electric cars, it is also a good option to buy an electric car if they match your current situation. <br><br>" +
+	  "I hope this helped you to decide which car is the best fit for you. In the next chart, you can explore and compare MPG values more deeply. ";
+	
   load_chart_three('LightGray');
+
 }
 
 function scene_final() {
@@ -441,7 +457,7 @@ function load_chart_three(color) {
       .duration(200)
       .style("opacity", 0.8);
 
-    tooltip.html('Manufacturing Country: ' + d.key + '<br>' + 'Car Count: ' + d.value)
+    tooltip.html('Manufacturing Country: ' + d.key + '<br>' + 'Number of Manufactured Car Models: ' + d.value)
       .style("left", (d3.event.pageX) + "px")
       .style("top", (d3.event.pageY - 30) + "px");
   };
@@ -504,7 +520,7 @@ function load_chart_three(color) {
     .attr('font-size', '18px')
     .attr('text-anchor', 'middle')
     .attr("transform", "rotate(-90)")
-    .text("Car Count")
+    .text("Number of Manufactured Car Models")
    
   var colorLegend = svg.selectAll("colorlegend")
     .data(subgroups)
