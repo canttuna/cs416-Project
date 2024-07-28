@@ -87,7 +87,8 @@ function scene_final() {
 function scene_home() {
   document.getElementById("introID").style.display = "block";
   document.getElementById("photoID").style.display = "block";
-  
+  document.getElementById("citationID").style.display = "block";
+	
   document.getElementById("chartID").innerHTML = "";
   document.getElementById("explainID").innerHTML = "";
   
@@ -112,6 +113,7 @@ function start_vis() {
   document.getElementById("photoID").style.display = "none";
   document.getElementById("chartID").innerHTML = "";
   document.getElementById("explainID").innerHTML = "";
+  document.getElementById("citationID").innerHTML = "";
 }
 
 function load_chart_one(color) {
