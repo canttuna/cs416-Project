@@ -1,7 +1,7 @@
 function scene_one() {
   start_vis();
 
-  document.getElementById("titleID").style.visibility = 'block';
+  document.getElementById("titleID").style.display = 'block';
   document.getElementById("titleID").innerHTML = 'Scene 1';
 	
   document.getElementById("home").style.visibility = 'visible';
@@ -35,7 +35,7 @@ function scene_one() {
 function scene_two() {
   start_vis();
 
-  document.getElementById("titleID").style.visibility = 'block';
+  document.getElementById("titleID").style.display = 'block';
   document.getElementById("titleID").innerHTML = 'Scene 2';
 	
   document.getElementById("home").style.visibility = 'visible';
@@ -69,7 +69,7 @@ function scene_two() {
 function scene_three() {
   start_vis();
 
-  document.getElementById("titleID").style.visibility = 'visible';
+  document.getElementById("titleID").style.display = 'block';
   document.getElementById("titleID").innerHTML = 'Scene 3';
 	
   document.getElementById("home").style.visibility = 'visible';
@@ -108,7 +108,7 @@ function scene_three() {
 function scene_final() {
   start_vis();
 
-  document.getElementById("titleID").style.visibility = 'visible';
+  document.getElementById("titleID").style.display = 'block';
   document.getElementById("titleID").innerHTML = 'Explore!';
 
   document.getElementById("home").style.visibility = 'visible';
@@ -132,6 +132,9 @@ function scene_home() {
   document.getElementById("introID").style.display = "block";
   document.getElementById("photoID").style.display = "block";
   document.getElementById("citationID").style.display = "block";
+
+  document.getElementById("controlcityID").style.display = "none";
+  document.getElementById("controlhwayID").style.display = "none";
 	
   document.getElementById("chartID").innerHTML = "";
   document.getElementById("explainID").innerHTML = "";
@@ -604,7 +607,7 @@ function hway_italy() {
   document.getElementById("controlhwayID").style.display = "block";
   document.getElementById("controlcityID").style.display = "block";
 	
-  document.getElementById("titleID").style.visibility = 'visible';
+  document.getElementById("titleID").style.display = 'block';
   document.getElementById("titleID").innerHTML = 'Average Highway MPG for Cars Manufactured from Italy';
 
   document.getElementById("home").style.visibility = 'visible';
@@ -774,7 +777,7 @@ function hway_us() {
   document.getElementById("controlhwayID").style.display = "block";
   document.getElementById("controlcityID").style.display = "block";
 	
-  document.getElementById("titleID").style.visibility = 'visible';
+  document.getElementById("titleID").style.display = 'block';
   document.getElementById("titleID").innerHTML = 'Average Highway MPG for Cars Manufactured from the US';
 
   document.getElementById("home").style.visibility = 'visible';
