@@ -125,7 +125,7 @@ function scene_final() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = null;
 
-  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips***";
+  document.getElementById("explainID").innerHTML = "***Choose your graph below***";
 	
   load_chart_final('LightGray');
 }
