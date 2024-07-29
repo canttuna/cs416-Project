@@ -137,8 +137,8 @@ function scene_home() {
 
   document.getElementById("controlcityID").style.display = "none";
   document.getElementById("controlhwayID").style.display = "none";
-  document.getElementById("title").style.display = "none";
 	
+  document.getElementById("titleID").innerHTML = "";
   document.getElementById("chartID").innerHTML = "";
   document.getElementById("explainID").innerHTML = "";
   
@@ -164,7 +164,6 @@ function start_vis() {
   document.getElementById("citationID").style.display = "none";
   document.getElementById("controlhwayID").style.display = "none";
   document.getElementById("controlcityID").style.display = "none";
-  document.getElementById("titleID").style.display = "none";
 	
   document.getElementById("chartID").innerHTML = "";
   document.getElementById("explainID").innerHTML = "";
