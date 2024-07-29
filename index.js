@@ -600,6 +600,27 @@ function load_chart_three(color) {
     .attr("dy", xSubgroup.bandwidth() * 0.8)
     .style("text-anchor", "end")
     .text(function(d) { return d; })
+	
+  svg.append('g')
+    .append('text')
+    .attr('x', x('10'))
+    .attr('y', (y("4") - 15))
+    .attr('font-style', 'italic')
+    .text("Italy and UK make less cars with many cylinders")
+    
+  svg.append('g')
+    .append('text')
+    .attr('x', x('4'))
+    .attr('y', (y("17") - 15))
+    .attr('font-style', 'italic')
+    .text("Japan and US make many 4-6 cylinder cars")
+ 
+  svg.append('g')
+    .append('text')
+    .attr('x', x('0'))
+    .attr('y', (y("3") - 15))
+    .attr('font-style', 'italic')
+    .text("Not a lot of electric cars")
 }
 
 function load_chart_final(color) { 
