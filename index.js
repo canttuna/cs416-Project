@@ -647,7 +647,7 @@ function hway_italy() {
     .append("svg")
     .attr("width", canvas.width)
     .attr("height", canvas.height)
-    .style("background-color", LightGray)
+    .style("background-color", 'LightGray')
     .append("g")
   
   const data = [
@@ -817,7 +817,7 @@ function hway_us() {
     .append("svg")
     .attr("width", canvas.width)
     .attr("height", canvas.height)
-    .style("background-color", color)
+    .style("background-color", 'LightGray')
     .append("g")
   
   const data = [
