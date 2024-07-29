@@ -590,7 +590,7 @@ function load_chart_final(color) {
     .append("svg")
     .attr("width", canvas.width)
     .attr("height", canvas.height)
-    .style("background-color", LightGray)
+    .style("background-color", 'LightGray')
     .append("g")
 }
 
