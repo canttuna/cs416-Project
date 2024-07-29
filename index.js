@@ -293,19 +293,23 @@ function load_chart_one(color) {
     .append('text')
     .attr('x', x(0))
     .attr('y', (y("101.5") - 15))
+    .attr('font-style', 'italic')
     .text("Electric Cars are the most fuel efficient")
+    
     
   svg.append('g')
     .append('text')
     .attr('x', x(2))
     .attr('y', (y("37.5") - 15))
+    .attr('font-style', 'italic')
     .text("Cars with 3 Engine Cylinders are recommended")
 
   svg.append('g')
     .append('text')
     .attr('x', x(5))
     .attr('y', (y("21.9") - 15))
-    .text("More engine cylinders is less fuel efficient")
+    .attr('font-style', 'italic')
+    .text("More engine cylinders are less fuel efficient")
 }
 
 function load_chart_two(color) {
@@ -425,6 +429,20 @@ function load_chart_two(color) {
     .attr('text-anchor', 'middle')
     .attr("transform", "rotate(-90)")
     .text("Average City MPG")
+	
+  svg.append('g')
+    .append('text')
+    .attr('x', x(1))
+    .attr('y', (y("36") - 15))
+    .attr('font-style', 'italic')
+    .text("This data shows a direct correlation")
+    
+  svg.append('g')
+    .append('text')
+    .attr('x', x(4))
+    .attr('y', (y("18.3") - 15))
+    .attr('font-style', 'italic')
+    .text("More engine cylinders are extremely inefficient in cities")
 }
 
 function load_chart_three(color) { 
