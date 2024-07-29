@@ -587,7 +587,7 @@ function load_chart_final(color) {
     .append("svg")
     .attr("width", canvas.width)
     .attr("height", canvas.height)
-    .style("background-color", color)
+    .style("background-color", LightGray)
     .append("g")
 }
 
@@ -642,7 +642,7 @@ function hway_italy() {
     .append("svg")
     .attr("width", canvas.width)
     .attr("height", canvas.height)
-    .style("background-color", color)
+    .style("background-color", LightGray)
     .append("g")
   
   const data = [
