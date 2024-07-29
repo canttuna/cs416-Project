@@ -1,6 +1,9 @@
 function scene_one() {
   start_vis();
-  
+
+  document.getElementById("titleID").style.visibility = 'visible';
+  document.getElementById("titleID").innerHTML = 'Scene 1';
+	
   document.getElementById("home").style.visibility = 'visible';
   document.getElementById("home").innerHTML = "Home";
   document.getElementById("home").onclick = function() { scene_home() };
@@ -31,7 +34,10 @@ function scene_one() {
 
 function scene_two() {
   start_vis();
-  
+
+  document.getElementById("titleID").style.visibility = 'visible';
+  document.getElementById("titleID").innerHTML = 'Scene 2';
+	
   document.getElementById("home").style.visibility = 'visible';
   document.getElementById("home").innerHTML = "Home";
   document.getElementById("home").onclick = function() { scene_home() };
@@ -62,7 +68,10 @@ function scene_two() {
 
 function scene_three() {
   start_vis();
-  
+
+  document.getElementById("titleID").style.visibility = 'visible';
+  document.getElementById("titleID").innerHTML = 'Scene 3';
+	
   document.getElementById("home").style.visibility = 'visible';
   document.getElementById("home").innerHTML = "Home";
   document.getElementById("home").onclick = function() { scene_home() };
@@ -98,7 +107,10 @@ function scene_three() {
 
 function scene_final() {
   start_vis();
-  
+
+  document.getElementById("titleID").style.visibility = 'visible';
+  document.getElementById("titleID").innerHTML = 'Explore!';
+
   document.getElementById("home").style.visibility = 'visible';
   document.getElementById("home").innerHTML = "Home";
   document.getElementById("home").onclick = function() { scene_home() };
@@ -113,7 +125,7 @@ function scene_final() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = null;
   
-  load_chart_final('#fcffa8');
+  load_chart_final('LightGray');
 }
 
 function scene_home() {
@@ -144,9 +156,13 @@ function start_vis() {
   document.getElementById("introID").style.display = "none";
   document.getElementById("photoID").style.display = "none";
   document.getElementById("citationID").style.display = "none";
+  document.getElementById("controlhwayID").style.display = "none";
+  document.getElementById("controlcityID").style.display = "none";
+  document.getElementById("titleID").style.display = "none";
 	
   document.getElementById("chartID").innerHTML = "";
   document.getElementById("explainID").innerHTML = "";
+  document.getElementById("titleID").innerHTML = "";
 }
 
 function load_chart_one(color) {
@@ -546,6 +562,64 @@ function load_chart_three(color) {
 
 function load_chart_final(color) { 
   // Get current browser window dimensions
+  document.getElementById("controlhwayID").style.display = "block";
+  document.getElementById("controlcityID").style.display = "block";
+	
+  var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName('body')[0],
+      x_size = w.innerWidth || e.clientWidth || g.clientWidth,
+      y_size = w.innerHeight || e.clientHeight || g.clientHeight;
+  
+  // Set canvas and chart dimensions
+  const width = 0.85 * x_size;
+  const height = (0.5 * x_size < 0.62 * y_size) ? 0.5 * x_size : 0.62 * y_size;
+  const canvas = { width: width, height: height };
+  const margin = { left: 82, right: 52, top: 36, bottom: 56 };
+  const chart = {
+    width: canvas.width - (margin.right + margin.left),
+    height: canvas.height - (margin.top + margin.bottom)
+  };
+  
+  // Append an svg object to the chartID div
+  var svg = d3.select("#chartID")
+    .append("svg")
+    .attr("width", canvas.width)
+    .attr("height", canvas.height)
+    .style("background-color", color)
+    .append("g")
+}
+
+function hway_germany() { 
+
+}
+
+function city_germany() { 
+
+}
+
+function hway_italy() { 
+  start_vis();
+
+  document.getElementById("titleID").style.visibility = 'visible';
+  document.getElementById("titleID").innerHTML = 'Average Highway MPG for Cars Manufactured from Italy';
+
+  document.getElementById("home").style.visibility = 'visible';
+  document.getElementById("home").innerHTML = "Home";
+  document.getElementById("home").onclick = function() { scene_home() };
+  
+  document.getElementById("back").style.visibility = 'visible';
+  document.getElementById("back").className = "button"
+  document.getElementById("back").innerHTML = "Back";
+  document.getElementById("back").onclick = function() { scene_three() };
+  
+  document.getElementById("next").style.visibility = 'visible';
+  document.getElementById("next").className = "button disabled";
+  document.getElementById("next").innerHTML = "Next";
+  document.getElementById("next").onclick = null;
+	
+  // Get current browser window dimensions
   var w = window,
       d = document,
       e = d.documentElement,
@@ -571,5 +645,269 @@ function load_chart_final(color) {
     .style("background-color", color)
     .append("g")
   
+  const data = [
+    { ec: '0', avghway: 103 },
+    { ec: '2', avghway: 0 },
+    { ec: '3', avghway: 0 },
+    { ec: '4', avghway: 32.3 },
+    { ec: '6', avghway: 24 },
+    { ec: '8', avghway: 21 },
+    { ec: '10', avghway: 21 },
+    { ec: '12', avghway: 16.5 }
+  ];
+
+  const x = d3.scaleBand()
+    .domain(d3.range(data.length))
+    .range([margin.left, width - margin.right])
+    .padding(0.1)
+
+  const y = d3.scaleLinear()
+    .domain([0, 110])
+    .range([height - margin.bottom, margin.top])
+    
+  // Create tooltip actions -----------------------------------------------
+  var tooltip = d3.select("#chartID")
+    .append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+  var mouseOver = function(d) {
+    tooltip.transition()
+      .duration(200)
+      .style("opacity", 0.8);
+
+    tooltip.html('Avg Highway MPG: ' + d.avghway + '<br>' + 'Engine Cylinder Count: ' + d.ec)
+      .style("left", (d3.event.pageX) + "px")
+      .style("top", (d3.event.pageY - 30) + "px");
+  };
+
+  var mouseOn = function(d) {
+    tooltip.style("left", (d3.event.pageX) + "px")
+      .style("top", (d3.event.pageY - 30) + "px");
+  };
+
+
+  var mouseLeave = function(d) {
+    tooltip.transition()
+      .duration(500)
+      .style("opacity", 0);
+  };
+
+  svg.append('g')
+    .attr('fill', '#377eb8')
+    .selectAll('rect')
+    .data(data)
+    .enter()
+    .append('rect')
+    .attr('x', (d, i) => x(i))
+    .attr('y', (d) => y(d.avghway))
+    .attr('height', (d) => chart.height - y(d.avghway) + margin.top)
+    .attr('width', x.bandwidth())
+    .attr('class', 'bar')
+	.on("mouseover", mouseOver)
+    .on("mousemove", mouseOn)
+    .on("mouseleave", mouseLeave);
+    
+  function xAxis(g) {
+    g.attr('transform', 'translate(0,' + (height - margin.bottom) + ')')
+      .call(d3.axisBottom(x).tickFormat(i => data[i].ec))
+      .attr('font-size', '18px')
+  }
+
+  function yAxis(g) {
+    g.attr('transform', 'translate(' + margin.left + ', 0)')
+      .call(d3.axisLeft(y).ticks(null, data.format))
+      .attr('font-size', '18px')
+  }
+
+  svg.append('g').call(yAxis);
+  svg.append('g').call(xAxis);
+ 
+  svg.append('g').attr('transform', 'translate(' + (chart.width / 2 + margin.left) + ', ' + (chart.height + margin.bottom * 1.35) + ')')
+    .append('text')
+    .attr("class", "x label")
+    .attr('font-size', '18px')
+    .attr('text-anchor', 'middle')
+    .text("Number of Engine Cylinders");
+    
+  svg.append('g').attr('transform', 'translate(' + margin.left * 0.45 + ', ' + (chart.height / 2 + margin.top) + ')')
+    .append('text')
+    .attr("class", "y label")
+    .attr('font-size', '18px')
+    .attr('text-anchor', 'middle')
+    .attr("transform", "rotate(-90)")
+    .text("Average Highway MPG")
+}
+
+function city_italy() { 
+
+}
+
+function hway_japan() { 
+
+}
+
+function city_japan() { 
+
+}
+
+function hway_korea() { 
+
+}
+
+function city_korea() { 
+
+}
+
+function hway_uk() { 
+
+}
+
+function city_uk() { 
+
+}
+
+function hway_us() { 
+  start_vis();
+
+  document.getElementById("titleID").style.visibility = 'visible';
+  document.getElementById("titleID").innerHTML = 'Average Highway MPG for Cars Manufactured from the US';
+
+  document.getElementById("home").style.visibility = 'visible';
+  document.getElementById("home").innerHTML = "Home";
+  document.getElementById("home").onclick = function() { scene_home() };
+  
+  document.getElementById("back").style.visibility = 'visible';
+  document.getElementById("back").className = "button"
+  document.getElementById("back").innerHTML = "Back";
+  document.getElementById("back").onclick = function() { scene_three() };
+  
+  document.getElementById("next").style.visibility = 'visible';
+  document.getElementById("next").className = "button disabled";
+  document.getElementById("next").innerHTML = "Next";
+  document.getElementById("next").onclick = null;
+	
+  // Get current browser window dimensions
+  var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName('body')[0],
+      x_size = w.innerWidth || e.clientWidth || g.clientWidth,
+      y_size = w.innerHeight || e.clientHeight || g.clientHeight;
+  
+  // Set canvas and chart dimensions
+  const width = 0.85 * x_size;
+  const height = (0.5 * x_size < 0.62 * y_size) ? 0.5 * x_size : 0.62 * y_size;
+  const canvas = { width: width, height: height };
+  const margin = { left: 82, right: 52, top: 36, bottom: 56 };
+  const chart = {
+    width: canvas.width - (margin.right + margin.left),
+    height: canvas.height - (margin.top + margin.bottom)
+  };
+  
+  // Append an svg object to the chartID div
+  var svg = d3.select("#chartID")
+    .append("svg")
+    .attr("width", canvas.width)
+    .attr("height", canvas.height)
+    .style("background-color", color)
+    .append("g")
+  
+  const data = [
+    { ec: '0', avghway: 101.3 },
+    { ec: '2', avghway: 0 },
+    { ec: '3', avghway: 40 },
+    { ec: '4', avghway: 29.5 },
+    { ec: '6', avghway: 24.5 },
+    { ec: '8', avghway: 21.9 },
+    { ec: '10', avghway: 10 },
+    { ec: '12', avghway: 0 }
+  ];
+
+  const x = d3.scaleBand()
+    .domain(d3.range(data.length))
+    .range([margin.left, width - margin.right])
+    .padding(0.1)
+
+  const y = d3.scaleLinear()
+    .domain([0, 110])
+    .range([height - margin.bottom, margin.top])
+    
+  // Create tooltip actions -----------------------------------------------
+  var tooltip = d3.select("#chartID")
+    .append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+  var mouseOver = function(d) {
+    tooltip.transition()
+      .duration(200)
+      .style("opacity", 0.8);
+
+    tooltip.html('Avg Highway MPG: ' + d.avghway + '<br>' + 'Engine Cylinder Count: ' + d.ec)
+      .style("left", (d3.event.pageX) + "px")
+      .style("top", (d3.event.pageY - 30) + "px");
+  };
+
+  var mouseOn = function(d) {
+    tooltip.style("left", (d3.event.pageX) + "px")
+      .style("top", (d3.event.pageY - 30) + "px");
+  };
+
+
+  var mouseLeave = function(d) {
+    tooltip.transition()
+      .duration(500)
+      .style("opacity", 0);
+  };
+
+  svg.append('g')
+    .attr('fill', 'Yellow')
+    .selectAll('rect')
+    .data(data)
+    .enter()
+    .append('rect')
+    .attr('x', (d, i) => x(i))
+    .attr('y', (d) => y(d.avghway))
+    .attr('height', (d) => chart.height - y(d.avghway) + margin.top)
+    .attr('width', x.bandwidth())
+    .attr('class', 'bar')
+	.on("mouseover", mouseOver)
+    .on("mousemove", mouseOn)
+    .on("mouseleave", mouseLeave);
+    
+  function xAxis(g) {
+    g.attr('transform', 'translate(0,' + (height - margin.bottom) + ')')
+      .call(d3.axisBottom(x).tickFormat(i => data[i].ec))
+      .attr('font-size', '18px')
+  }
+
+  function yAxis(g) {
+    g.attr('transform', 'translate(' + margin.left + ', 0)')
+      .call(d3.axisLeft(y).ticks(null, data.format))
+      .attr('font-size', '18px')
+  }
+
+  svg.append('g').call(yAxis);
+  svg.append('g').call(xAxis);
+ 
+  svg.append('g').attr('transform', 'translate(' + (chart.width / 2 + margin.left) + ', ' + (chart.height + margin.bottom * 1.35) + ')')
+    .append('text')
+    .attr("class", "x label")
+    .attr('font-size', '18px')
+    .attr('text-anchor', 'middle')
+    .text("Number of Engine Cylinders");
+    
+  svg.append('g').attr('transform', 'translate(' + margin.left * 0.45 + ', ' + (chart.height / 2 + margin.top) + ')')
+    .append('text')
+    .attr("class", "y label")
+    .attr('font-size', '18px')
+    .attr('text-anchor', 'middle')
+    .attr("transform", "rotate(-90)")
+    .text("Average Highway MPG")
+}
+
+function city_us() { 
+
 }
 
