@@ -1,7 +1,7 @@
 function scene_one() {
   start_vis();
 
-  document.getElementById("titleID").style.visibility = 'visible';
+  document.getElementById("titleID").style.visibility = 'block';
   document.getElementById("titleID").innerHTML = 'Scene 1';
 	
   document.getElementById("home").style.visibility = 'visible';
@@ -35,7 +35,7 @@ function scene_one() {
 function scene_two() {
   start_vis();
 
-  document.getElementById("titleID").style.visibility = 'visible';
+  document.getElementById("titleID").style.visibility = 'block';
   document.getElementById("titleID").innerHTML = 'Scene 2';
 	
   document.getElementById("home").style.visibility = 'visible';
@@ -601,7 +601,9 @@ function city_germany() {
 
 function hway_italy() { 
   start_vis();
-
+  document.getElementById("controlhwayID").style.display = "block";
+  document.getElementById("controlcityID").style.display = "block";
+	
   document.getElementById("titleID").style.visibility = 'visible';
   document.getElementById("titleID").innerHTML = 'Average Highway MPG for Cars Manufactured from Italy';
 
@@ -769,7 +771,9 @@ function city_uk() {
 
 function hway_us() { 
   start_vis();
-
+  document.getElementById("controlhwayID").style.display = "block";
+  document.getElementById("controlcityID").style.display = "block";
+	
   document.getElementById("titleID").style.visibility = 'visible';
   document.getElementById("titleID").innerHTML = 'Average Highway MPG for Cars Manufactured from the US';
 
