@@ -18,7 +18,7 @@ function scene_one() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_two() };
 
-  document.getElementById("explainID").innerHTML = "Here the data for average highway MPG of different numbers of engine cylinders are provided. " + 
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips*** <br><br> Here the data for average highway MPG of different numbers of engine cylinders are provided. " + 
 	  "Note that the 0 engine cylinders represent electric vehicles. " +
 	  "There is a different way of calculating MPG for electric vehicles since they don’t run on gas. " +
 	  "According to " + 
@@ -27,7 +27,7 @@ function scene_one() {
 	  "So if an electric car travels 101.5 miles with 33.7 kWh, this would mean that the MPG for this vehicle is 101.5 MPG. <br><br>" + 
 	  "In this graph, it can be seen that electric cars have the best average highway MPG. " + 
 	  "From vehicles that have an internal combustion engine, cars that have 3 engine cylinders show a high average highway MPG value compared to others. " +
-	  "We can also see that there is no direct correlation between number of engine cylinders and average highway MPG."; 
+	  "Except for the 2 engine cylinder, we can see that the MPG decrease as the number of engine cylinder increases. However, more engine cylinder means more power for the car."; 
 	
   load_chart_one('#b3f8fc');
 }
@@ -52,7 +52,7 @@ function scene_two() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_three() };
 
-  document.getElementById("explainID").innerHTML = "Here the data for average city MPG of different numbers of engine cylinders are provided. " +
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips*** <br><br> Here the data for average city MPG of different numbers of engine cylinders are provided. " +
 	  "The reason why the values for average city MPG and average highway MPG are considered separately is because cars typically travel with different speeds in these locations. " +
 	  "In the city, cars will travel relatively slow (25 ~ 30 mph) in the cities due to traffic, speed limits, and safety. " +
 	  "On the other hand, cars will travel up to 70 mph on the highway according to " +
@@ -86,7 +86,7 @@ function scene_three() {
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = function() { scene_final() };
 
-  document.getElementById("explainID").innerHTML = "Here is the graph for the number of manufactured car models of different numbers of engine cylinders per manufacturing country. " +
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips*** <br><br> Here is the graph for the number of manufactured car models of different numbers of engine cylinders per manufacturing country. " +
 	  "The legend shows the different countries. " +
 	  "A missing bar in the graph means that there are no cars with the specific number of engine cylinders being manufactured by the country. " +
 	  "We can see that most manufacturers focus on making 4, 6, and 8 engine cylinder vehicles. " +
@@ -285,6 +285,24 @@ function load_chart_one(color) {
     .attr('text-anchor', 'middle')
     .attr("transform", "rotate(-90)")
     .text("Average Highway MPG")
+	
+  svg.append('g')
+    .append('text')
+    .attr('x', x(0))
+    .attr('y', (y("101.5") - 15))
+    .text("Electric Cars are the most fuel efficient")
+    
+  svg.append('g')
+    .append('text')
+    .attr('x', x(2))
+    .attr('y', (y("37.5") - 15))
+    .text("Cars with 3 Engine Cylinders are recommended")
+
+  svg.append('g')
+    .append('text')
+    .attr('x', x(5))
+    .attr('y', (y("21.9") - 15))
+    .text("More engine cylinders is less fuel efficient")
 }
 
 function load_chart_two(color) {
