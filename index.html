@@ -25,7 +25,15 @@
       font-size: 20px;
       text-align: left;
     }
-
+    
+    #titleID p {
+      font-family: Helvetica, Arial, sans-serif;
+      padding: 30px;
+      margin: auto;
+      font-size: 30px;
+      text-align: left;
+    }
+    
     h1 {
       font-family: Helvetica, Arial, sans-serif;
       font-size: 50px;
@@ -36,7 +44,7 @@
       font-size: 11pt;
       background-color: rgb(244, 249, 249);
       display: block;
-      margin: auto;
+      margin: 10px;
       padding: 1%;
       position: relative;
       width: 85%;
@@ -129,6 +137,7 @@
   </div>
   
   <br>
+  <div id='titleID'></div>
   
   <div id='chartID'></div>
   
@@ -156,6 +165,26 @@
   </div>
   
   <br>
+  
+  <div id='controlhwayID' style="visibility : block"> 
+  	<p> AVG Highway MPG for country </p>
+    <button id="hwayGermany" class="button" onclick="hway_germany()"> Germany </button>
+    <button id="hwayItaly" class="button" onclick="hway_italy()"> Italy </button>
+    <button id="hwayJapan" class="button" onclick="hway_japan()"> Japan </button>
+    <button id="hwayKorea" class="button" onclick="hway_korea()"> Korea </button>
+    <button id="hwayUK" class="button" onclick="hway_uk()"> UK </button>
+    <button id="hwayUS" class="button" onclick="hway_us()"> US </button>
+  </div>
+  <br>
+  <div id='controlcityID' style="visibility : block"> 
+    <p> AVG City MPG for country </p>
+    <button id="cityGermany" class="button" onclick="city_germany()"> Germany </button>
+    <button id="cityItaly" class="button" onclick="city_italy()"> Italy </button>
+    <button id="cityJapan" class="button" onclick="city_japan()"> Japan </button>
+    <button id="cityKorea" class="button" onclick="city_korea()"> Korea </button>
+    <button id="cityUK" class="button" onclick="city_uk()"> UK </button>
+    <button id="cityUS" class="button" onclick="city_us()"> US </button>
+  </div>
   
   <div id="footerID">
     <p>2024 Jay Kwon CS416 Project</p>
