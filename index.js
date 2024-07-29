@@ -124,7 +124,9 @@ function scene_final() {
   document.getElementById("next").className = "button disabled";
   document.getElementById("next").innerHTML = "Next";
   document.getElementById("next").onclick = null;
-  
+
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips***";
+	
   load_chart_final('LightGray');
 }
 
@@ -135,6 +137,7 @@ function scene_home() {
 
   document.getElementById("controlcityID").style.display = "none";
   document.getElementById("controlhwayID").style.display = "none";
+  document.getElementById("title").style.display = "none";
 	
   document.getElementById("chartID").innerHTML = "";
   document.getElementById("explainID").innerHTML = "";
@@ -614,6 +617,7 @@ function load_chart_final(color) {
 
 function hway_germany() { 
   start_vis();
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips***";
   document.getElementById("controlhwayID").style.display = "block";
   document.getElementById("controlcityID").style.display = "block";
 	
@@ -756,6 +760,7 @@ function hway_germany() {
 
 function city_germany() { 
   start_vis();
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips***";
   document.getElementById("controlhwayID").style.display = "block";
   document.getElementById("controlcityID").style.display = "block";
 	
@@ -898,6 +903,7 @@ function city_germany() {
 
 function hway_italy() { 
   start_vis();
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips***";
   document.getElementById("controlhwayID").style.display = "block";
   document.getElementById("controlcityID").style.display = "block";
 	
@@ -1040,6 +1046,7 @@ function hway_italy() {
 
 function city_italy() { 
   start_vis();
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips***";
   document.getElementById("controlhwayID").style.display = "block";
   document.getElementById("controlcityID").style.display = "block";
 	
@@ -1182,6 +1189,7 @@ function city_italy() {
 
 function hway_japan() { 
   start_vis();
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips***";
   document.getElementById("controlhwayID").style.display = "block";
   document.getElementById("controlcityID").style.display = "block";
 	
@@ -1324,6 +1332,7 @@ function hway_japan() {
 
 function city_japan() { 
   start_vis();
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips***";
   document.getElementById("controlhwayID").style.display = "block";
   document.getElementById("controlcityID").style.display = "block";
 	
@@ -1466,6 +1475,7 @@ function city_japan() {
 
 function hway_korea() { 
   start_vis();
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips***";
   document.getElementById("controlhwayID").style.display = "block";
   document.getElementById("controlcityID").style.display = "block";
 	
@@ -1608,6 +1618,8 @@ function hway_korea() {
 
 function city_korea() { 
   start_vis();
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips***";
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips***";
   document.getElementById("controlhwayID").style.display = "block";
   document.getElementById("controlcityID").style.display = "block";
 	
@@ -1750,6 +1762,7 @@ function city_korea() {
 
 function hway_uk() { 
   start_vis();
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips***";
   document.getElementById("controlhwayID").style.display = "block";
   document.getElementById("controlcityID").style.display = "block";
 	
@@ -1892,6 +1905,7 @@ function hway_uk() {
 
 function city_uk() { 
   start_vis();
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips***";
   document.getElementById("controlhwayID").style.display = "block";
   document.getElementById("controlcityID").style.display = "block";
 	
@@ -2034,6 +2048,7 @@ function city_uk() {
 
 function hway_us() { 
   start_vis();
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips***";
   document.getElementById("controlhwayID").style.display = "block";
   document.getElementById("controlcityID").style.display = "block";
 	
@@ -2176,6 +2191,7 @@ function hway_us() {
 
 function city_us() { 
   start_vis();
+  document.getElementById("explainID").innerHTML = "***Hover over bars to see the tooltips***";
   document.getElementById("controlhwayID").style.display = "block";
   document.getElementById("controlcityID").style.display = "block";
 	
